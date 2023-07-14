@@ -8,10 +8,10 @@ import { useChat } from 'ai/react'
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function Chat(){
-    const {messages, input, handleInputChange, handleSubmit} = useChat({
-        api: './api/chat'
-    })
-    
+    const { messages, input, handleInputChange, handleSubmit } = useChat({
+        api: 'https://pedrojuri.github.io/mini-chatbot/api/chat'
+    });
+
     return(
         <Card className="w-[440px]">
         <CardHeader>
