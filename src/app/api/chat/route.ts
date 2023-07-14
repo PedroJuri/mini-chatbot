@@ -1,3 +1,4 @@
+require('dotenv').config()
 import { Configuration, OpenAIApi } from 'openai-edge'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
 
