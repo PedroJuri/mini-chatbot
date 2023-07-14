@@ -13,6 +13,9 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
+  
+env:
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
   build:
@@ -20,6 +23,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: create env file
+        run: |
+          touch .env
+          echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
       - name: Detect package manager
         id: detect-package-manager
         run: |
@@ -57,8 +64,6 @@ jobs:
       - name: Configure Environment Variables
         run: |
           echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
-      - name: Debug Environment Variable
-        run: echo $OPENAI_API_KEY
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
