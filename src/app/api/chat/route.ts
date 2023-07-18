@@ -8,7 +8,7 @@ const openai = new OpenAIApi(config)
 
 export const runtime = 'edge'
  
-export const get = (req: Request) => {
+export async function get(req: Request) {
   const { messages } = await req.json()
 
   const response = await openai.createChatCompletion({
@@ -22,6 +22,8 @@ export const get = (req: Request) => {
   return new StreamingTextResponse(stream)
 }
 
-export const post = (req: Request) => {
+export async function post(req: Request) {
+  const { messages } = await req.json()
+
   // Do something with the request body
 }
