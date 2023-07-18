@@ -1,21 +1,20 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useChat } from 'ai/react';
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function Chat() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const response = await fetch('/api/chat', {
@@ -24,7 +23,6 @@ export function Chat() {
     });
     
     const responseData = await response.json();
-    // Processar a resposta recebida, atualizar o estado das mensagens, etc.
   };
 
   return (
@@ -36,7 +34,6 @@ export function Chat() {
       <CardContent>
         <ScrollArea className="h-[600px] w-full pr-4">
           {messages.map((message) => {
-            // Renderizar as mensagens
           })}
         </ScrollArea>
       </CardContent>
