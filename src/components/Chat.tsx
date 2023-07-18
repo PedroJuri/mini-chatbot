@@ -33,8 +33,11 @@ export function Chat() {
       </CardHeader>
       <CardContent>
         <ScrollArea className="h-[600px] w-full pr-4">
-          {messages.map((message) => {
-          })}
+          {messages.map((message) => (
+            <div key={message.id}>
+              {/* Renderizar o conteúdo da mensagem aqui */}
+            </div>
+          ))}
         </ScrollArea>
       </CardContent>
       <CardFooter>
