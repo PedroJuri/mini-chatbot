@@ -8,9 +8,9 @@ const openai = new OpenAIApi(config)
 
 export const runtime = 'edge'
  
-export async function get(req: Request) {
+export async function POST(req: Request) {
   const { messages } = await req.json()
-
+ 
   const response = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
     stream: true,
@@ -20,10 +20,4 @@ export async function get(req: Request) {
   const stream = OpenAIStream(response)
 
   return new StreamingTextResponse(stream)
-}
-
-export async function post(req: Request) {
-  const { messages } = await req.json()
-
-  // Do something with the request body
 }
